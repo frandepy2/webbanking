@@ -41,7 +41,6 @@ public class PanelMenu extends javax.swing.JPanel {
         lblci = new javax.swing.JLabel();
         lblfecha = new javax.swing.JLabel();
         lbldirecion = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         lblcelular = new javax.swing.JLabel();
         lbltelefono = new javax.swing.JLabel();
         lblruc = new javax.swing.JLabel();
@@ -87,9 +86,6 @@ public class PanelMenu extends javax.swing.JPanel {
         lbldirecion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lbldirecion.setText("direccion");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel18.setText("email");
-
         lblcelular.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblcelular.setText("celular");
 
@@ -126,13 +122,8 @@ public class PanelMenu extends javax.swing.JPanel {
                         .addComponent(lbldirecion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(jLabel18))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblruc))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblruc))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -190,17 +181,11 @@ public class PanelMenu extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(lblcelular))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(lblruc))
-                        .addGap(259, 306, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel18)
-                        .addGap(18, 18, 18))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(lblruc))
+                .addGap(259, 306, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -226,7 +211,6 @@ public class PanelMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
