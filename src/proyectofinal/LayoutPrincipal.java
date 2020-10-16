@@ -5,6 +5,8 @@
  */
 package proyectofinal;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -15,14 +17,28 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     /**
      * Creates new form LayoutPrincipal
      */
-
-    PanelMenu dash = new PanelMenu();;
-    Gui_Transacciones gui_trans = new Gui_Transacciones();
+    /*OBJETOS PANELES*/
+    Gui_Dashboard dash = new Gui_Dashboard();;
+    Gui_Transacciones gui_transacciones = new Gui_Transacciones();
+    Gui_Transferencia gui_transferencia = new Gui_Transferencia();
+    Gui_PagoServicios gui_pago = new Gui_PagoServicios();
+    Gui_SaldoCuenta gui_saldo = new Gui_SaldoCuenta();
+    Gui_Depositos gui_deposito = new Gui_Depositos();
+    
+    public void quitarPaneles(){
+        gui_transacciones.setVisible(false);
+        gui_pago.setVisible(false);
+        gui_saldo.setVisible(false);
+        gui_deposito.setVisible(false);
+        gui_transferencia.setVisible(false);
+        dash.setVisible(false);
+    }
     
     public LayoutPrincipal() {
         initComponents();
         
         this.setLocationRelativeTo(null);
+        this.setTitle("Simulador WEB BANKING");
         
         contenedor.add(dash);  
         pack();
@@ -38,12 +54,12 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     private void initComponents() {
 
         menu = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        btnmenuTrans = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnDash = new javax.swing.JButton();
+        btnPagoServicios = new javax.swing.JButton();
+        btnDepositos = new javax.swing.JButton();
+        btnTransacciones = new javax.swing.JButton();
+        btnSaldo = new javax.swing.JButton();
+        btnTransferencias = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,43 +68,49 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         menu.setBackground(new java.awt.Color(75, 101, 132));
 
-        jButton7.setText("Dashboard");
-
-        jButton8.setText("Pago de Servicios");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnDash.setText("Dashboard");
+        btnDash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnDashActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Depositos");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnPagoServicios.setText("Pago de Servicios");
+        btnPagoServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnPagoServiciosActionPerformed(evt);
             }
         });
 
-        btnmenuTrans.setText("Mis Transacciones");
-        btnmenuTrans.addActionListener(new java.awt.event.ActionListener() {
+        btnDepositos.setText("Depositos");
+        btnDepositos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnmenuTransActionPerformed(evt);
+                btnDepositosActionPerformed(evt);
             }
         });
 
-        jButton11.setText("Saldo de Cuenta");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnTransacciones.setText("Mis Transacciones");
+        btnTransacciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                btnTransaccionesActionPerformed(evt);
             }
         });
 
-        jButton12.setText("Transferencias");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        btnSaldo.setText("Saldo de Cuenta");
+        btnSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                btnSaldoActionPerformed(evt);
+            }
+        });
+
+        btnTransferencias.setText("Transferencias");
+        btnTransferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferenciasActionPerformed(evt);
             }
         });
 
@@ -99,39 +121,44 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmenuTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(btnDash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPagoServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDepositos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTransacciones, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(btnSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTransferencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDash, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPagoServicios, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDepositos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnmenuTrans, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTransacciones, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addComponent(btnTransferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         getContentPane().add(menu, java.awt.BorderLayout.LINE_START);
 
-        header.setBackground(new java.awt.Color(56, 103, 214));
+        header.setBackground(new java.awt.Color(102, 161, 210));
 
         jLabel1.setFont(new java.awt.Font("Perpetua", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Sistema WebBanking");
+        jLabel1.setText("Simulador de WebBanking");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,7 +177,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 735, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
@@ -177,32 +204,53 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         );
 
         getContentPane().add(header, java.awt.BorderLayout.PAGE_START);
+
+        contenedor.setBackground(new java.awt.Color(240, 255, 251));
+        contenedor.setLayout(new java.awt.BorderLayout());
         getContentPane().add(contenedor, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void btnPagoServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoServiciosActionPerformed
+        quitarPaneles();
+        gui_pago.setVisible(true);
+        contenedor.add(gui_pago);
+    }//GEN-LAST:event_btnPagoServiciosActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnDepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositosActionPerformed
+        quitarPaneles();
+        gui_deposito.setVisible(true);
+        contenedor.add(gui_deposito);
+    }//GEN-LAST:event_btnDepositosActionPerformed
 
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void btnTransaccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccionesActionPerformed
+        quitarPaneles();
+        gui_transacciones.setVisible(true);
+        contenedor.add(gui_transacciones);
+    }//GEN-LAST:event_btnTransaccionesActionPerformed
 
-    private void btnmenuTransActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenuTransActionPerformed
-        dash.setVisible(false);
-        gui_trans.setVisible(true);
-        contenedor.add(gui_trans);
-    }//GEN-LAST:event_btnmenuTransActionPerformed
+    private void btnSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoActionPerformed
+        quitarPaneles();
+        gui_saldo.setVisible(true);
+        contenedor.add(gui_saldo);
+    }//GEN-LAST:event_btnSaldoActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void btnTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciasActionPerformed
+        quitarPaneles();
+        gui_transferencia.setVisible(true);
+        contenedor.add(gui_transferencia);
+    }//GEN-LAST:event_btnTransferenciasActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    private void btnDashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashActionPerformed
+        quitarPaneles();
+        dash.setVisible(true);
+        contenedor.add(dash);
+    }//GEN-LAST:event_btnDashActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        JOptionPane.showMessageDialog(null, "Trabajo Realizado por el grupo 3 LP2 2020");
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -241,15 +289,15 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnmenuTrans;
+    private javax.swing.JButton btnDash;
+    private javax.swing.JButton btnDepositos;
+    private javax.swing.JButton btnPagoServicios;
+    private javax.swing.JButton btnSaldo;
+    private javax.swing.JButton btnTransacciones;
+    private javax.swing.JButton btnTransferencias;
     public javax.swing.JPanel contenedor;
     private javax.swing.JPanel header;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
