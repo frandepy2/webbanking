@@ -72,6 +72,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
 
         menu.setBackground(new java.awt.Color(75, 101, 132));
 
+        btnDash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-persona-de-sexo-masculino-30.png"))); // NOI18N
         btnDash.setText("Dashboard");
         btnDash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +80,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             }
         });
 
+        btnPagoServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-pago-en-línea-30.png"))); // NOI18N
         btnPagoServicios.setText("Pago de Servicios");
         btnPagoServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,13 +88,15 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             }
         });
 
-        btnDepositos.setText("Depositos");
+        btnDepositos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-dinero-30.png"))); // NOI18N
+        btnDepositos.setText("Realizar Deposito");
         btnDepositos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDepositosActionPerformed(evt);
             }
         });
 
+        btnTransacciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-cuenta-30.png"))); // NOI18N
         btnTransacciones.setText("Mis Transacciones");
         btnTransacciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +104,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             }
         });
 
+        btnSaldo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-caja-de-dinero-30.png"))); // NOI18N
         btnSaldo.setText("Saldo de Cuenta");
         btnSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +112,8 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             }
         });
 
-        btnTransferencias.setText("Transferencias");
+        btnTransferencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-intercambio-de-tarjetas-30.png"))); // NOI18N
+        btnTransferencias.setText("Realizar Transferencia");
         btnTransferencias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTransferenciasActionPerformed(evt);
@@ -124,7 +130,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
                     .addComponent(btnDash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPagoServicios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDepositos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTransacciones, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(btnTransacciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTransferencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
