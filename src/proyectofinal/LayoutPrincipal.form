@@ -45,7 +45,7 @@
                       <Component id="btnDash" max="32767" attributes="0"/>
                       <Component id="btnPagoServicios" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnDepositos" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnTransacciones" alignment="0" pref="159" max="32767" attributes="0"/>
+                      <Component id="btnTransacciones" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnSaldo" max="32767" attributes="0"/>
                       <Component id="btnTransferencias" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -76,6 +76,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnDash">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyectofinal/iconos/icons8-persona-de-sexo-masculino-30.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Dashboard"/>
           </Properties>
           <Events>
@@ -84,6 +87,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnPagoServicios">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyectofinal/iconos/icons8-pago-en-l&#xed;nea-30.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Pago de Servicios"/>
           </Properties>
           <Events>
@@ -92,7 +98,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnDepositos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Depositos"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyectofinal/iconos/icons8-dinero-30.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Realizar Deposito"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDepositosActionPerformed"/>
@@ -100,6 +109,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnTransacciones">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyectofinal/iconos/icons8-cuenta-30.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mis Transacciones"/>
           </Properties>
           <Events>
@@ -108,6 +120,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSaldo">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyectofinal/iconos/icons8-caja-de-dinero-30.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Saldo de Cuenta"/>
           </Properties>
           <Events>
@@ -116,7 +131,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnTransferencias">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Transferencias"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/proyectofinal/iconos/icons8-intercambio-de-tarjetas-30.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Realizar Transferencia"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTransferenciasActionPerformed"/>
