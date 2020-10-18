@@ -172,7 +172,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Francisco Sanabria");
 
-        jButton1.setText("Cerrar Seccion");
+        jButton1.setText("Cerrar Sesión");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,7 +185,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))

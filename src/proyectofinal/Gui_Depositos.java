@@ -48,7 +48,7 @@ public class Gui_Depositos extends javax.swing.JPanel {
         Titulo.setBackground(new java.awt.Color(218, 227, 229));
 
         jLabel2.setFont(new java.awt.Font("HP Simplified", 0, 36)); // NOI18N
-        jLabel2.setText("Realizar un Deposito");
+        jLabel2.setText("Realizar un Depósito");
 
         javax.swing.GroupLayout TituloLayout = new javax.swing.GroupLayout(Titulo);
         Titulo.setLayout(TituloLayout);
@@ -71,14 +71,14 @@ public class Gui_Depositos extends javax.swing.JPanel {
 
         Opciones.setBackground(new java.awt.Color(218, 227, 229));
 
-        btnOpCheque.setText("Deposito en Cheque");
+        btnOpCheque.setText("Depósito en Cheque");
         btnOpCheque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOpChequeActionPerformed(evt);
             }
         });
 
-        btnOpEfectivo.setText("Deposito en Efectivo");
+        btnOpEfectivo.setText("Depósito en Efectivo");
         btnOpEfectivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOpEfectivoActionPerformed(evt);
@@ -130,7 +130,7 @@ public class Gui_Depositos extends javax.swing.JPanel {
         jButton6.setText("Depositar");
 
         jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setText("CANCELAR");
+        jButton7.setText("Cancelar");
 
         jLabel4.setText("Nro Cheque");
 

@@ -128,8 +128,8 @@
                       <Data value="2"/>
                       <Data value="3"/>
                     </Column>
-                    <Column editable="false" title="Tipo de Transaccion" type="java.lang.Object">
-                      <Data value="Deposito"/>
+                    <Column editable="true" title="Tipo de Transaccion" type="java.lang.Object">
+                      <Data value="Dep&#xf3;sito"/>
                       <Data value="Transferencia"/>
                       <Data value="Pago de Servicio"/>
                     </Column>
@@ -143,10 +143,10 @@
                       <Data value="10:15"/>
                       <Data value="10:20"/>
                     </Column>
-                    <Column editable="false" title="Descripcion " type="java.lang.Object">
-                      <Data value="Deposito"/>
+                    <Column editable="true" title="Descripcion " type="java.lang.Object">
+                      <Data value="Dep&#xf3;sito en Efectivo"/>
                       <Data value="Transferencia, Cuenta destino 2  10000 Gs "/>
-                      <Data value="Pago de Servicio ANDE Pago FACTURA XXXXX "/>
+                      <Data value="Pago de Servicio ANDE"/>
                     </Column>
                     <Column editable="false" title="Monto de Transaccion" type="java.lang.Object">
                       <Data value="+ 20000 Gs"/>

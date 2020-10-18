@@ -72,16 +72,16 @@ public class Gui_Transacciones extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "Deposito", "15/10/2019", "10:00", "Deposito", "+ 20000 Gs"},
+                {"1", "Depósito", "15/10/2019", "10:00", "Depósito en Efectivo", "+ 20000 Gs"},
                 {"2", "Transferencia", "15/10/2020", "10:15", "Transferencia, Cuenta destino 2  10000 Gs ", "- 10000 Gs"},
-                {"3", "Pago de Servicio", "15/10/2020", "10:20", "Pago de Servicio ANDE Pago FACTURA XXXXX ", "- 3550000 Gs"}
+                {"3", "Pago de Servicio", "15/10/2020", "10:20", "Pago de Servicio ANDE", "- 3550000 Gs"}
             },
             new String [] {
                 "Nro Transaccion", "Tipo de Transaccion", "Fecha", "Hora", "Descripcion ", "Monto de Transaccion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, true, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

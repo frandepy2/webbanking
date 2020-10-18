@@ -84,7 +84,7 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Introduce PIN de Transaccion: ");
+        jLabel1.setText("Introduce PIN de Transacción: ");
 
         jLabel3.setText("Saldo en Cuenta:");
 

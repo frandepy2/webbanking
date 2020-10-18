@@ -20,7 +20,7 @@ public class Gui_inicio extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/proyectofinal/iconos/iconDash.png")).getImage());
         this.setLocationRelativeTo(null);
-        this.setTitle("Iniciar Sesion");
+        this.setTitle("Iniciar Sesión");
     }
 
     /**
@@ -49,7 +49,7 @@ public class Gui_inicio extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1280, 720));
 
         jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
-        jLabel4.setText("INICIAR SESION");
+        jLabel4.setText("INICIAR SESIÓN");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,7 +70,7 @@ public class Gui_inicio extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jButton1.setText("Iniciar Sesion");
+        jButton1.setText("Iniciar Sesión");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -96,7 +96,7 @@ public class Gui_inicio extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jLabel1.setText("Numero de Cuenta");
+        jLabel1.setText("Número de Cuenta");
 
         jLabel3.setText("PIN de Cuenta");
 

@@ -169,10 +169,10 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
         });
 
         jButton6.setBackground(new java.awt.Color(153, 237, 146));
-        jButton6.setText("PAGAR");
+        jButton6.setText("Pagar");
 
         jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setText("CANCELAR");
+        jButton7.setText("Cancelar");
 
         javax.swing.GroupLayout formularioLayout = new javax.swing.GroupLayout(formulario);
         formulario.setLayout(formularioLayout);

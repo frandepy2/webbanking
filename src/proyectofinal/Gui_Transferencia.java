@@ -72,10 +72,10 @@ public class Gui_Transferencia extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(218, 227, 229));
 
         jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setText("CANCELAR");
+        jButton7.setText("Cancelar");
 
         jButton6.setBackground(new java.awt.Color(153, 237, 146));
-        jButton6.setText("TRANSFERIR");
+        jButton6.setText("Transferir");
 
         jLabel1.setText("Cantidad a Transferir en Gs");
 

@@ -145,7 +145,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Introduce PIN de Transaccion: "/>
+            <Property name="text" type="java.lang.String" value="Introduce PIN de Transacci&#xf3;n: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">

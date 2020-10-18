@@ -54,7 +54,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="HP Simplified" size="36" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Realizar un Deposito"/>
+            <Property name="text" type="java.lang.String" value="Realizar un Dep&#xf3;sito"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -99,7 +99,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnOpCheque">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Deposito en Cheque"/>
+            <Property name="text" type="java.lang.String" value="Dep&#xf3;sito en Cheque"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpChequeActionPerformed"/>
@@ -107,7 +107,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnOpEfectivo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Deposito en Efectivo"/>
+            <Property name="text" type="java.lang.String" value="Dep&#xf3;sito en Efectivo"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpEfectivoActionPerformed"/>
@@ -216,7 +216,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CANCELAR"/>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">

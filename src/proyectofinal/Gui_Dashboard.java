@@ -72,7 +72,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
         lblemail.setText("frandepy@fpuna.edu.py");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setText("Telefono:");
+        jLabel10.setText("Teléfono:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("E-Mail:");
@@ -206,7 +206,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
         );
 
         jLabel1.setFont(new java.awt.Font("HP Simplified", 0, 24)); // NOI18N
-        jLabel1.setText("Buenos dias, Francisco.");
+        jLabel1.setText("Buenos días, Francisco.");
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
 
