@@ -5,6 +5,8 @@
  */
 package proyectofinal;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author FRAND
@@ -16,6 +18,9 @@ public class Gui_inicio extends javax.swing.JFrame {
      */
     public Gui_inicio() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/proyectofinal/iconos/iconDash.png")).getImage());
+        this.setLocationRelativeTo(null);
+        this.setTitle("Iniciar Sesion");
     }
 
     /**
@@ -66,6 +71,11 @@ public class Gui_inicio extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jButton1.setText("Iniciar Sesion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -126,6 +136,11 @@ public class Gui_inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        LayoutPrincipal.main(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

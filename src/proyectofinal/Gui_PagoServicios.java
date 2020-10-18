@@ -47,7 +47,9 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Perpetua", 1, 36)); // NOI18N
+        Titulo.setBackground(new java.awt.Color(218, 227, 229));
+
+        jLabel2.setFont(new java.awt.Font("HP Simplified", 0, 36)); // NOI18N
         jLabel2.setText("Pago de servicios");
 
         javax.swing.GroupLayout TituloLayout = new javax.swing.GroupLayout(Titulo);
@@ -57,7 +59,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
             .addGroup(TituloLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addContainerGap(806, Short.MAX_VALUE))
+                .addContainerGap(811, Short.MAX_VALUE))
         );
         TituloLayout.setVerticalGroup(
             TituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,6 +70,8 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
         );
 
         add(Titulo, java.awt.BorderLayout.PAGE_START);
+
+        Opciones.setBackground(new java.awt.Color(218, 227, 229));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/ande.png"))); // NOI18N
         jButton1.setText("ANDE");
@@ -142,6 +146,8 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
         );
 
         add(Opciones, java.awt.BorderLayout.LINE_START);
+
+        formulario.setBackground(new java.awt.Color(218, 227, 229));
 
         jTextField1.setText("35500000");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {

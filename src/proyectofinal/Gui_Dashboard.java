@@ -17,7 +17,9 @@ public class Gui_Dashboard extends javax.swing.JPanel {
     public Gui_Dashboard() {
         initComponents();
     }
-
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,65 +53,65 @@ public class Gui_Dashboard extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(240, 255, 244));
+        setBackground(new java.awt.Color(218, 227, 229));
 
-        jPanel1.setBackground(new java.awt.Color(68, 164, 240));
+        jPanel1.setBackground(new java.awt.Color(80, 125, 188));
 
-        Datos.setBackground(new java.awt.Color(178, 226, 249));
+        Datos.setBackground(new java.awt.Color(161, 198, 234));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Nombre:");
 
-        lblapellido.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblapellido.setText("apellido");
+        lblapellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblapellido.setText("Sanabria");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Dirección:");
 
-        lblemail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblemail.setText("email");
+        lblemail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblemail.setText("frandepy@fpuna.edu.py");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Telefono:");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("E-Mail:");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Celular:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Apellido:");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setText("RUC:");
 
-        lblnombre.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblnombre.setText("nombre");
+        lblnombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblnombre.setText("Francisco");
 
-        lblfecha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblfecha.setText("fecha");
+        lblfecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblfecha.setText("26/06/2020");
 
-        lblci.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblci.setText("ci");
+        lblci.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblci.setText("1.123.123");
 
-        lbldirecion.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbldirecion.setText("direccion");
+        lbldirecion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbldirecion.setText("Comenador Bo 1248 ");
 
-        lblcelular.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblcelular.setText("celular");
+        lblcelular.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblcelular.setText("0981456789");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("C.I.:");
 
-        lbltelefono.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbltelefono.setText("telefono");
+        lbltelefono.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lbltelefono.setText("021132456");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Fecha de nacimiento:");
 
-        lblruc.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblruc.setText("ruc");
+        lblruc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblruc.setText("---");
 
         javax.swing.GroupLayout DatosLayout = new javax.swing.GroupLayout(Datos);
         Datos.setLayout(DatosLayout);
@@ -139,7 +141,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
                     .addComponent(lblci)
                     .addComponent(lblemail)
                     .addComponent(lblfecha))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DatosLayout.setVerticalGroup(
             DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,9 +174,9 @@ public class Gui_Dashboard extends javax.swing.JPanel {
                             .addComponent(lbltelefono)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbldirecion)
-                            .addComponent(jLabel9))
+                        .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(lbldirecion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblcelular)
@@ -197,19 +199,18 @@ public class Gui_Dashboard extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
-        jLabel1.setText("Simulador de Web Banking");
+        jLabel1.setFont(new java.awt.Font("HP Simplified", 0, 24)); // NOI18N
+        jLabel1.setText("Buenos dias, Francisco.");
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
-        jLabel2.setText("Bienvenido, Trabajo Final LP2 Grupo 3");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/money-3614661_640.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/iconDash.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -221,8 +222,8 @@ public class Gui_Dashboard extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -234,9 +235,9 @@ public class Gui_Dashboard extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents

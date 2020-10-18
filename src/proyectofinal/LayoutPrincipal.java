@@ -5,6 +5,7 @@
  */
 package proyectofinal;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -25,6 +26,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     Gui_SaldoCuenta gui_saldo = new Gui_SaldoCuenta();
     Gui_Depositos gui_deposito = new Gui_Depositos();
     
+    
     public void quitarPaneles(){
         gui_transacciones.setVisible(false);
         gui_pago.setVisible(false);
@@ -36,7 +38,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     
     public LayoutPrincipal() {
         initComponents();
-        
+        setIconImage(new ImageIcon(getClass().getResource("/proyectofinal/iconos/iconDash.png")).getImage());
         this.setLocationRelativeTo(null);
         this.setTitle("Simulador WEB BANKING");
         
@@ -70,7 +72,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        menu.setBackground(new java.awt.Color(75, 101, 132));
+        menu.setBackground(new java.awt.Color(4, 8, 95));
 
         btnDash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectofinal/iconos/icons8-persona-de-sexo-masculino-30.png"))); // NOI18N
         btnDash.setText("Dashboard");
@@ -150,14 +152,14 @@ public class LayoutPrincipal extends javax.swing.JFrame{
                 .addComponent(btnSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnTransferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         getContentPane().add(menu, java.awt.BorderLayout.LINE_START);
 
-        header.setBackground(new java.awt.Color(102, 161, 210));
+        header.setBackground(new java.awt.Color(80, 125, 188));
 
-        jLabel1.setFont(new java.awt.Font("Perpetua", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("HP Simplified", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Simulador de WebBanking");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,9 +168,9 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Bienvenido Usuario");
+        jLabel2.setText("Francisco Sanabria");
 
         jButton1.setText("Cerrar Seccion");
 
@@ -183,7 +185,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
