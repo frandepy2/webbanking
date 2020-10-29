@@ -7,6 +7,8 @@ package proyectofinal;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import proyectofinal.funciones.BaseDatos;
+import proyectofinal.funciones.Cuenta;
 
 
 /**
@@ -19,13 +21,26 @@ public class LayoutPrincipal extends javax.swing.JFrame{
      * Creates new form LayoutPrincipal
      */
     /*OBJETOS PANELES*/
-    Gui_Dashboard dash = new Gui_Dashboard();;
+    Gui_Dashboard dash = new Gui_Dashboard();
     Gui_Transacciones gui_transacciones = new Gui_Transacciones();
     Gui_Transferencia gui_transferencia = new Gui_Transferencia();
     Gui_PagoServicios gui_pago = new Gui_PagoServicios();
     Gui_SaldoCuenta gui_saldo = new Gui_SaldoCuenta();
     Gui_Depositos gui_deposito = new Gui_Depositos();
     
+    public static Cuenta cuenta;
+    
+    public static void cargarCuenta(String nroCuenta){
+        BaseDatos bs = new BaseDatos();
+        cuenta = bs.getAllDataCuenta(nroCuenta);
+    }
+    
+    public void verificarCuenta(){
+        if (cuenta == null){
+            Gui_inicio.main(null);
+            this.dispose();
+        }
+    }
     
     public void quitarPaneles(){
         gui_transacciones.setVisible(false);
@@ -41,6 +56,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         setIconImage(new ImageIcon(getClass().getResource("/proyectofinal/iconos/iconDash.png")).getImage());
         this.setLocationRelativeTo(null);
         this.setTitle("Simulador WEB BANKING");
+        setearLayout();
         
         contenedor.add(dash);  
         pack();
@@ -64,9 +80,9 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         btnTransferencias = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
+        lblNroCuenta = new javax.swing.JLabel();
         contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,15 +184,20 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Francisco Sanabria");
+        lblNombre.setFont(new java.awt.Font("HP Simplified", 1, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Usuario");
 
-        jButton1.setText("Cerrar Sesión");
+        btnClose.setText("Cerrar Sesión");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nro Cuenta 000000001");
+        lblNroCuenta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblNroCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        lblNroCuenta.setText("Nro Cuenta");
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -185,12 +206,12 @@ public class LayoutPrincipal extends javax.swing.JFrame{
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 519, Short.MAX_VALUE)
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(lblNombre)
+                    .addComponent(lblNroCuenta))
                 .addGap(43, 43, 43)
-                .addComponent(jButton1)
+                .addComponent(btnClose)
                 .addGap(36, 36, 36))
         );
         headerLayout.setVerticalGroup(
@@ -199,15 +220,15 @@ public class LayoutPrincipal extends javax.swing.JFrame{
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(headerLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jButton1))
+                        .addComponent(btnClose))
                     .addGroup(headerLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(headerLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(lblNombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))))
+                                .addComponent(lblNroCuenta)))))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -260,6 +281,16 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         JOptionPane.showMessageDialog(null, "Trabajo Realizado por el grupo 3 LP2 2020");
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        cuenta=null;
+        Gui_inicio.main(null);
+        this.dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    public void setearLayout(){
+        lblNombre.setText(cuenta.getCliente().getNombre()+" "+cuenta.getCliente().getApellido());
+        lblNroCuenta.setText(lblNroCuenta.getText()+" "+cuenta.getNroCuenta());
+    }
     /**
      * @param args the command line arguments
      */
@@ -287,16 +318,23 @@ public class LayoutPrincipal extends javax.swing.JFrame{
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LayoutPrincipal().setVisible(true);
-            }
-        });
+        try{
+            cargarCuenta(args[0]);
+            /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new LayoutPrincipal().setVisible(true);
+                }
+            });
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Logueate para acceder");
+            Gui_inicio.main(null);
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnDash;
     private javax.swing.JButton btnDepositos;
     private javax.swing.JButton btnPagoServicios;
@@ -305,10 +343,9 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     private javax.swing.JButton btnTransferencias;
     public javax.swing.JPanel contenedor;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNroCuenta;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 
