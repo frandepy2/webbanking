@@ -7,7 +7,7 @@ public class Cuenta {
     private int idCuenta;
     private Cliente cliente;
     private String nroCuenta;
-    private int pinCuenta;
+    private String pinCuenta;
     private int estadoCuenta;
     private Date fechaAlta;
     private Date fechaBaja;
@@ -40,11 +40,11 @@ public class Cuenta {
         this.nroCuenta = nroCuenta;
     }
 
-    public int getPinCuenta() {
+    public String getPinCuenta() {
         return pinCuenta;
     }
 
-    public void setPinCuenta(int pinCuenta) {
+    public void setPinCuenta(String pinCuenta) {
         this.pinCuenta = pinCuenta;
     }
 

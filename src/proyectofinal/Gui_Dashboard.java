@@ -5,6 +5,12 @@
  */
 package proyectofinal;
 
+import java.util.Date;
+import org.sqlite.date.DateFormatUtils;
+import proyectofinal.funciones.Cliente;
+import proyectofinal.funciones.Cuenta;
+import java.time.LocalTime;
+
 /**
  *
  * @author jlgut
@@ -14,11 +20,42 @@ public class Gui_Dashboard extends javax.swing.JPanel {
     /**
      * Creates new form PanelMenu
      */
+    public static Cuenta cuenta;
     public Gui_Dashboard() {
         initComponents();
+        cuenta = LayoutPrincipal.cuenta;
+        setDatos();
     }
     
+    public void setDatos(){
+        lblnombre.setText(cuenta.getCliente().getNombre());
+        lblapellido.setText(cuenta.getCliente().getApellido());
+        lblcelular.setText(cuenta.getCliente().getCelular());
+        lblci.setText(cuenta.getCliente().getcIdentidad());
+        lbldirecion.setText(cuenta.getCliente().getDireccion());
+        lblfecha.setText(retornaFormatoFecha(cuenta.getCliente().getfNac()));
+        lblruc.setText(cuenta.getCliente().getRuc());
+        lblemail.setText(cuenta.getCliente().getEmail());
+        lbltelefono.setText(cuenta.getCliente().getTelefono());
+        saludo(cuenta.getCliente().getNombre());
+    }
     
+    public String retornaFormatoFecha(Date fecha){
+        return DateFormatUtils.format(fecha, "dd-MM-yyyy");
+    }
+    
+    public void saludo(String nombre){
+        int hora = LocalTime.now().getHour();
+        
+        if (hora>=6 && hora<=11){
+            lblSaludo.setText("Buenos dias, "+nombre);
+        }else if (hora>=12 && hora<=18){
+            lblSaludo.setText("Buenas tardes, "+nombre);
+        }else{
+            lblSaludo.setText("Buenas noches, "+nombre);
+        }
+        
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,7 +86,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
         lbltelefono = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblruc = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblSaludo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -205,8 +242,8 @@ public class Gui_Dashboard extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("HP Simplified", 0, 24)); // NOI18N
-        jLabel1.setText("Buenos días, Francisco.");
+        lblSaludo.setFont(new java.awt.Font("HP Simplified", 0, 24)); // NOI18N
+        lblSaludo.setText("Buenos días, Francisco.");
 
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
 
@@ -220,7 +257,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSaludo, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -231,7 +268,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addComponent(lblSaludo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -245,7 +282,6 @@ public class Gui_Dashboard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Datos;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -258,6 +294,7 @@ public class Gui_Dashboard extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblSaludo;
     private javax.swing.JLabel lblapellido;
     private javax.swing.JLabel lblcelular;
     private javax.swing.JLabel lblci;

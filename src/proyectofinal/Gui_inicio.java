@@ -6,13 +6,17 @@
 package proyectofinal;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import proyectofinal.funciones.BaseDatos;
+import proyectofinal.funciones.Cuenta;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
  * @author FRAND
  */
 public class Gui_inicio extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Gui_inicio
      */
@@ -36,12 +40,12 @@ public class Gui_inicio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnIniciar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        txtIniciaSesion = new javax.swing.JTextField();
+        txtNroCuenta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPIN = new javax.swing.JPasswordField();
 
         jLabel2.setText("jLabel2");
 
@@ -70,10 +74,10 @@ public class Gui_inicio extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jButton1.setText("Iniciar Sesión");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnIniciar.setText("Iniciar Sesión");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnIniciarActionPerformed(evt);
             }
         });
 
@@ -83,14 +87,14 @@ public class Gui_inicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -100,7 +104,11 @@ public class Gui_inicio extends javax.swing.JFrame {
 
         jLabel3.setText("PIN de Cuenta");
 
-        jPasswordField1.setText("1234");
+        txtPIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPINActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -109,8 +117,8 @@ public class Gui_inicio extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtIniciaSesion)
-                    .addComponent(jPasswordField1)
+                    .addComponent(txtNroCuenta)
+                    .addComponent(txtPIN)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -124,11 +132,11 @@ public class Gui_inicio extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtIniciaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNroCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPIN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -137,10 +145,31 @@ public class Gui_inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        LayoutPrincipal.main(null);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        String nroCuenta,pin;
+        BaseDatos bs = new BaseDatos();
+        
+        nroCuenta = txtNroCuenta.getText();
+        String arg[] ={nroCuenta};
+        pin = txtPIN.getText();
+        String pinCodec = DigestUtils.md5Hex(pin);
+        Cuenta cuenta = bs.getDatoCuenta(nroCuenta);
+        
+        if (cuenta == null){
+            JOptionPane.showMessageDialog(null, "La cuenta no existe, o ha sido dado de baja");
+        }else{
+            if (cuenta.getPinCuenta().equals(pinCodec)){
+                LayoutPrincipal.main(arg);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "PIN de Cuenta Invalido");
+            }
+        }
+    }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void txtPINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPINActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPINActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +207,7 @@ public class Gui_inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnIniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -186,7 +215,7 @@ public class Gui_inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField txtIniciaSesion;
+    private javax.swing.JTextField txtNroCuenta;
+    private javax.swing.JPasswordField txtPIN;
     // End of variables declaration//GEN-END:variables
 }
