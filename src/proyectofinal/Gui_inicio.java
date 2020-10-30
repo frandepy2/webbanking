@@ -5,11 +5,16 @@
  */
 package proyectofinal;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import proyectofinal.funciones.BaseDatos;
 import proyectofinal.funciones.Cuenta;
 import org.apache.commons.codec.digest.DigestUtils;
+import password_hashing.PasswordStorage;
+import password_hashing.PasswordStorage.CannotPerformOperationException;
+import password_hashing.PasswordStorage.InvalidHashException;
 
 /**
  *
@@ -146,23 +151,27 @@ public class Gui_inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        String nroCuenta,pin;
+        String nroCuenta;
+        char[] pin;
         BaseDatos bs = new BaseDatos();
         
         nroCuenta = txtNroCuenta.getText();
         String arg[] ={nroCuenta};
-        pin = txtPIN.getText();
-        String pinCodec = DigestUtils.md5Hex(pin);
+        pin = txtPIN.getPassword();
         Cuenta cuenta = bs.getDatoCuenta(nroCuenta);
         
         if (cuenta == null){
             JOptionPane.showMessageDialog(null, "La cuenta no existe, o ha sido dado de baja");
         }else{
-            if (cuenta.getPinCuenta().equals(pinCodec)){
-                LayoutPrincipal.main(arg);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "PIN de Cuenta Invalido");
+            try {
+                if (PasswordStorage.verifyPassword(pin, cuenta.getPinCuenta())){
+                    LayoutPrincipal.main(arg);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "PIN de Cuenta Invalido");
+                }
+            } catch (CannotPerformOperationException | InvalidHashException ex) {
+                JOptionPane.showMessageDialog(null, "Error verificando su contraseña. Por favor verificar entrada e intentar de nuevo.");
             }
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
