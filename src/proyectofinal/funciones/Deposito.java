@@ -43,5 +43,4 @@ public class Deposito {
         this.NroCheque = NroCheque;
     }
     
-    
 }
