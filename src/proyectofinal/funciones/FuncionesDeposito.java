@@ -12,11 +12,9 @@ public class FuncionesDeposito {
         Transaccion transaccion = new Transaccion();
         BaseDatos bd = new BaseDatos();
         try{
-            System.out.println("Monto Anterior en Cuenta: "+ LayoutPrincipal.cuenta.getSaldoEnCuenta());
             LayoutPrincipal.cuenta.addMonto(monto);
-            System.out.println("Nuevo Monto en Cuenta: "+ LayoutPrincipal.cuenta.getSaldoEnCuenta());
-            
             transaccion.setTipo("Deposito");
+            
             if ("".equals(nroCheque)){ //En Efectivo
                 deposito.setTipoDeposito("Efectivo");
                 
@@ -31,6 +29,8 @@ public class FuncionesDeposito {
             transaccion.setFechaTransaccion(Date.valueOf(LocalDate.now()));
             
             bd.actualizarDatosDeposito(deposito,transaccion,LayoutPrincipal.cuenta); //Actualizamos la base de Datos
+            
+            JOptionPane.showMessageDialog(null,"Deposito realizado Correctamente");
             
         }catch (IllegalArgumentException ex){
             JOptionPane.showMessageDialog(null,"Datos introducidos Invalidos");

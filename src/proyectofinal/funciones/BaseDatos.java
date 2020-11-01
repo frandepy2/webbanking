@@ -8,10 +8,13 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.sqlite.date.DateFormatUtils;
 
 public class BaseDatos {
    
@@ -138,10 +141,97 @@ public class BaseDatos {
     private Date convertirFecha(String fecha) throws ParseException{
         return new SimpleDateFormat("yyyy-MM-dd").parse(fecha.substring(0,fecha.indexOf(" ")));
     }
-
-    //Actualizar Datos de Deposito
-    public void actualizarDatosDeposito(Deposito deposito, Transaccion transaccion, Cuenta cuentaDestino) {
-        
+    //Conversor de Fecha y hora exacta ahora mismo
+    public String FormatoFechaHora (Date fecha){
+        return DateFormatUtils.format(fecha, "yyyy-MM-dd hh:mm:ss");
     }
     
+    
+    //Actualizar Datos de Deposito
+    public void actualizarDatosDeposito(Deposito deposito, Transaccion transaccion, Cuenta cuentaDestino) {
+        final java.util.Date date=new java.util.Date();
+        addDeposito(deposito,cuentaDestino.getIdCuenta(),date);
+        int depositoID = obtenerID(deposito,date,cuentaDestino.getIdCuenta());
+        addTransaccion(transaccion,cuentaDestino.getIdCuenta(),depositoID,date);
+        actualizarSaldoCuenta(cuentaDestino);
+    }
+    
+    //Agrega un deposito a la Base de Datos 
+    private void addDeposito(Deposito deposito,int cuenta_id, Date tiempo){
+        
+        String sql = "INSERT INTO deposito ( cuenta_id,deposito_tipo,deposito_numeroCheque,deposito_fecha) VALUES (?,?,?,?)";
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, cuenta_id);
+            pstmt.setString(2, deposito.getTipoDeposito());
+            pstmt.setInt(3, deposito.getNroCheque());
+            pstmt.setString(4,FormatoFechaHora(tiempo));
+            pstmt.executeUpdate();
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    
+    //Trae la id de un deposito
+    private int obtenerID(Deposito deposito, Date date,int cuenta_id){
+        String sql = "SELECT deposito_id FROM deposito WHERE cuenta_id=? AND deposito_tipo=? AND deposito_numeroCheque =? AND deposito_fecha = ?";
+        
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, cuenta_id);
+            pstmt.setString(2, deposito.getTipoDeposito());
+            pstmt.setInt(3, deposito.getNroCheque());
+            pstmt.setString(4,FormatoFechaHora(date));
+            
+            ResultSet rs = pstmt.executeQuery();
+            return rs.getInt("deposito_id");
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return 0;
+    }
+    
+    //Agregar una transaccion a la Base de Datos
+    private void addTransaccion(Transaccion transaccion,int cuenta_id,int deposito_id,Date tiempo){
+        String sql = "INSERT INTO transaccion (" +
+"                            cuenta_id," +
+"                            transaccion_monto," +
+"                            transaccion_fech," +
+"                            transaccion_desc," +
+"                            transaccion_tipo," +
+"                            deposito_id" +
+"                        )" +
+"                        VALUES (?,?,?,?,?,?)";
+        
+        try(Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1,cuenta_id);
+            pstmt.setDouble(2,transaccion.getMonto());
+            pstmt.setString(3,FormatoFechaHora(tiempo));
+            pstmt.setString(4,transaccion.getDescripcion());
+            pstmt.setString(5,transaccion.getTipo());
+            pstmt.setInt(6,deposito_id);
+
+            pstmt.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void actualizarSaldoCuenta(Cuenta cuentaDestino) {
+        String sql="UPDATE cuenta SET cuenta_saldo = ? WHERE cuenta_id = ?";
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            
+            pstmt.setDouble(1, cuentaDestino.getSaldoEnCuenta());
+            pstmt.setDouble(2, cuentaDestino.getIdCuenta());
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
