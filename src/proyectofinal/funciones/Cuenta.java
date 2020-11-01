@@ -2,6 +2,7 @@
 package proyectofinal.funciones;
 
 import java.util.Date;
+import proyectofinal.LayoutPrincipal;
 
 public class Cuenta {
     private int idCuenta;
@@ -80,6 +81,14 @@ public class Cuenta {
         this.saldoEnCuenta = saldoEnCuenta;
     }
     
-    
+    //Sirve para sumar un monto a la cuenta 
+    public void addMonto(String monto) throws IllegalArgumentException{
+        Double aDepositar = Double.parseDouble(monto);
+        if (aDepositar>0){
+            this.saldoEnCuenta = this.saldoEnCuenta + aDepositar;
+        }else{
+            throw new IllegalArgumentException();
+        }
+    }
     
 }

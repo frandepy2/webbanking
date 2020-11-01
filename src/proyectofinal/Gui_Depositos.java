@@ -5,6 +5,9 @@
  */
 package proyectofinal;
 
+import javax.swing.JOptionPane;
+import proyectofinal.funciones.FuncionesDeposito;
+
 
 /**
  *
@@ -35,12 +38,12 @@ public class Gui_Depositos extends javax.swing.JPanel {
         btnOpCheque = new javax.swing.JButton();
         btnOpEfectivo = new javax.swing.JButton();
         formulario = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMontoDeposito = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNroCheque = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnDepositar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
@@ -110,10 +113,10 @@ public class Gui_Depositos extends javax.swing.JPanel {
 
         formulario.setBackground(new java.awt.Color(218, 227, 229));
 
-        jTextField1.setText("35500000");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtMontoDeposito.setText("35500000");
+        txtMontoDeposito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtMontoDepositoActionPerformed(evt);
             }
         });
 
@@ -126,11 +129,16 @@ public class Gui_Depositos extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setBackground(new java.awt.Color(153, 237, 146));
-        jButton6.setText("Depositar");
+        btnDepositar.setBackground(new java.awt.Color(153, 237, 146));
+        btnDepositar.setText("Depositar");
+        btnDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositarActionPerformed(evt);
+            }
+        });
 
-        jButton7.setBackground(new java.awt.Color(255, 51, 51));
-        jButton7.setText("Cancelar");
+        btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
+        btnCancelar.setText("Cancelar");
 
         jLabel4.setText("Nro Cheque");
 
@@ -142,9 +150,9 @@ public class Gui_Depositos extends javax.swing.JPanel {
                 .addGap(158, 158, 158)
                 .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(formularioLayout.createSequentialGroup()
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addGroup(formularioLayout.createSequentialGroup()
                         .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -153,7 +161,7 @@ public class Gui_Depositos extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNroCheque)
-                            .addComponent(jTextField1))))
+                            .addComponent(txtMontoDeposito))))
                 .addContainerGap(167, Short.MAX_VALUE))
         );
         formularioLayout.setVerticalGroup(
@@ -166,21 +174,21 @@ public class Gui_Depositos extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMontoDeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(30, 30, 30)
                 .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(229, Short.MAX_VALUE))
         );
 
         add(formulario, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtMontoDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoDepositoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtMontoDepositoActionPerformed
 
     private void txtNroChequeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNroChequeActionPerformed
         // TODO add your handling code here:
@@ -197,20 +205,30 @@ public class Gui_Depositos extends javax.swing.JPanel {
         txtNroCheque.setEnabled(true);
     }//GEN-LAST:event_btnOpChequeActionPerformed
 
+    private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
+        String nroCheque = txtNroCheque.getText();
+        String monto = txtMontoDeposito.getText();
+        if (txtNroCheque.isEnabled() && "".equals(nroCheque)){ 
+            JOptionPane.showMessageDialog(null,"Introduzca el numero de Cheque");
+        }else{
+            FuncionesDeposito.realizarDeposito(nroCheque,monto);
+        }
+    }//GEN-LAST:event_btnDepositarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Opciones;
     private javax.swing.JPanel Titulo;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnDepositar;
     private javax.swing.JButton btnOpCheque;
     private javax.swing.JButton btnOpEfectivo;
     private javax.swing.JPanel formulario;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtMontoDeposito;
     private javax.swing.JTextField txtNroCheque;
     // End of variables declaration//GEN-END:variables
 }

@@ -134,8 +134,14 @@ public class BaseDatos {
         return null;
     }
     
+    //Conversor de Fechas
     private Date convertirFecha(String fecha) throws ParseException{
         return new SimpleDateFormat("yyyy-MM-dd").parse(fecha.substring(0,fecha.indexOf(" ")));
+    }
+
+    //Actualizar Datos de Deposito
+    public void actualizarDatosDeposito(Deposito deposito, Transaccion transaccion, Cuenta cuentaDestino) {
+        
     }
     
 }
