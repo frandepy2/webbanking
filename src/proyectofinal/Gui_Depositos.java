@@ -139,6 +139,11 @@ public class Gui_Depositos extends javax.swing.JPanel {
 
         btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Nro Cheque");
 
@@ -214,6 +219,13 @@ public class Gui_Depositos extends javax.swing.JPanel {
             FuncionesDeposito.realizarDeposito(nroCheque,monto);
         }
     }//GEN-LAST:event_btnDepositarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        int res = JOptionPane.showConfirmDialog(null,"Seguro que desea cancelar la operacion?");
+        if (res == 0){
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
