@@ -256,6 +256,7 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     private void btnTransaccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccionesActionPerformed
         quitarPaneles();
         gui_transacciones.setVisible(true);
+        gui_transacciones.cargarTabla();
         contenedor.add(gui_transacciones);
     }//GEN-LAST:event_btnTransaccionesActionPerformed
 
