@@ -252,10 +252,9 @@ public class BaseDatos {
      * @return 
      */
     public DefaultTableModel traerTransacciones(int cuenta_id){
-        String sql = "SELECT transaccion_id,transaccion_tipo,transaccion_fech,transaccion_desc,transaccion_monto from transaccion WHERE cuenta_id=?";
+        String sql = "SELECT transaccion_tipo,transaccion_fech,transaccion_desc,transaccion_monto from transaccion WHERE cuenta_id=?";
         DefaultTableModel modeloTabla = new DefaultTableModel();
         
-        modeloTabla.addColumn("Nro Transaccion");
         modeloTabla.addColumn("TipoTransaccion");
         modeloTabla.addColumn("Fecha");
         modeloTabla.addColumn("Descripcion");
@@ -268,12 +267,11 @@ public class BaseDatos {
             ResultSet rs = pstmt.executeQuery();
             
             while (rs.next()) {
-                Object[] fila = new Object[5];
-                fila[0] = rs.getInt("transaccion_id");
-                fila[1] = rs.getString("transaccion_tipo");
-                fila[2] = rs.getString("transaccion_fech");
-                fila[3] = rs.getString("transaccion_desc");
-                fila[4] = rs.getDouble("transaccion_monto");
+                Object[] fila = new Object[4];
+                fila[0] = rs.getString("transaccion_tipo");
+                fila[1] = rs.getString("transaccion_fech");
+                fila[2] = rs.getString("transaccion_desc");
+                fila[3] = rs.getDouble("transaccion_monto");
                 
                 modeloTabla.addRow(fila);
 

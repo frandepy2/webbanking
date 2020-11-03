@@ -8,6 +8,7 @@ package proyectofinal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import proyectofinal.funciones.FuncionesTransacciones;
@@ -24,6 +25,9 @@ public class Gui_Transacciones extends javax.swing.JPanel {
     public static DefaultTableModel modelo;
     public Gui_Transacciones(){
         initComponents(); 
+        JScrollPane js=new JScrollPane(tabla);
+        js.setVisible(true);
+        add(js);
     }
 
     public void cargarTabla(){
