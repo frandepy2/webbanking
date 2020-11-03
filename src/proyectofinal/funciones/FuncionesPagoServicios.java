@@ -12,12 +12,13 @@ public class FuncionesPagoServicios {
         BaseDatos db = new BaseDatos();
         if (db.getServicio() == null) {
             throw new Exception("No existe el servicio");
-        } else {
-            db.getServicio();
         }
     }
 
-    public static void setMonto(Double monto) {
+    public static void setMonto(Double monto) throws Exception {
+        if(monto<=0.0){
+            throw new Exception("Monto no valido");
+        }
         FuncionesPagoServicios.monto = monto;
     }
 
