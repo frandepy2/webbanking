@@ -5,6 +5,10 @@
  */
 package proyectofinal;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import password_hashing.PasswordStorage;
 import proyectofinal.funciones.FuncionesPinTransaccion;
 import proyectofinal.funciones.FuncionesSaldoCuenta;
 
@@ -122,9 +126,20 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSaldoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int pin = FuncionesPinTransaccion.generarPIN();
-        if(FuncionesPinTransaccion.compararPIN(pin)){
-            txtSaldo.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
+        String pin = null;
+        try {
+            pin = FuncionesPinTransaccion.generarPIN();
+        } catch (PasswordStorage.CannotPerformOperationException ex) {
+            Logger.getLogger(Gui_SaldoCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            if(FuncionesPinTransaccion.compararPIN(pin)){
+                txtSaldo.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
+            }
+        } catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException ex) {
+            Logger.getLogger(Gui_SaldoCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Se ha interrumpido la operación");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -34,6 +34,10 @@ public class Gui_Transacciones extends javax.swing.JPanel {
         try {
             modelo = FuncionesTransacciones.poblarTabla();
             tabla.setModel(modelo);
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(69);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(500);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(20);
         } catch (SQLException ex) {
             Logger.getLogger(Gui_Transacciones.class.getName()).log(Level.SEVERE, null, ex);
         }

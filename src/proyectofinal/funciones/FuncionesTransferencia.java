@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import password_hashing.PasswordStorage;
 import proyectofinal.LayoutPrincipal;
 
 /**
@@ -19,7 +20,7 @@ public class FuncionesTransferencia {
      * @param nroCuentaDestino
      * @param montoTransferir 
      */
-    public static void realizarTransferencia(String nroCuentaDestino, String montoTransferir) throws IllegalArgumentException{
+    public static void realizarTransferencia(String nroCuentaDestino, String montoTransferir) throws IllegalArgumentException, PasswordStorage.CannotPerformOperationException, PasswordStorage.InvalidHashException{
         int hh = LocalTime.now().getHour();
         int mm = LocalTime.now().getMinute();
         int ss = LocalTime.now().getSecond();
@@ -54,13 +55,9 @@ public class FuncionesTransferencia {
             if (!saldoDisponible) throw new IllegalArgumentException("No posee saldo Disponible para realizar la operación");
             
             //PIN de Transaccion
-            int pin = FuncionesPinTransaccion.generarPIN();
-            
-            String PinIngresado = JOptionPane.showInputDialog(null, "Ingrese el PIN de transacción","PIN de Transacción",WARNING_MESSAGE);
-            
-            String PinHasheado = FuncionesPinTransaccion.compararPIN(pin, PinIngresado);
-            
-            if ("".equals(PinHasheado)) {
+            String pinHasheado = FuncionesPinTransaccion.generarPIN();
+                        
+            if (!FuncionesPinTransaccion.compararPIN(pinHasheado)) {
                 throw new IllegalArgumentException("PIN de Transaccion Invalido");
             }
             
@@ -71,7 +68,7 @@ public class FuncionesTransferencia {
             //Se registra los daltos de Transferencia
             transferencia.setCuentaDestino(cuentaDest);
             transferencia.setCuentaOrigen(LayoutPrincipal.cuenta );
-            transferencia.setPinTransaccion(PinHasheado);
+            transferencia.setPinTransaccion(pinHasheado);
             
             
             //Se registran los datos de Transaccion de la cuenta Emisora

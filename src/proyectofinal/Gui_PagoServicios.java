@@ -253,7 +253,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtServicioActionPerformed
 
-    static public int pin;
+    static public String pin;
 
     static public String[] servicios = {"ANDE", "ESSAP", "COPACO", "CNC", "UNA"};
 
