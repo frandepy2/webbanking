@@ -7,6 +7,10 @@ public class Transferencia {
     private Cuenta cuentaOrigen;
     private Cuenta cuentaDestino;
 
+    public Transferencia(){
+        
+    }
+    
     public Transferencia(int idTransferencia, int pinTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
         this.idTransferencia = idTransferencia;
         this.pinTransaccion = pinTransaccion;
