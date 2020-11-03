@@ -1,7 +1,7 @@
-
 package proyectofinal.funciones;
 
 public class PagoServicios {
+
     private int idServicio;
     private String nombreServicio;
     private int pinTransaccion;
@@ -48,6 +48,5 @@ public class PagoServicios {
     public void setCodigoServicio(int codigoServicio) {
         this.codigoServicio = codigoServicio;
     }
-    
-    
+
 }

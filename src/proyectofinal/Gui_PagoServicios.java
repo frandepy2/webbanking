@@ -5,6 +5,9 @@
  */
 package proyectofinal;
 
+import javax.swing.JOptionPane;
+import proyectofinal.funciones.FuncionesPagoServicios;
+import proyectofinal.funciones.FuncionesSaldoCuenta;
 
 /**
  *
@@ -17,7 +20,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
      */
     public Gui_PagoServicios() {
         initComponents();
-        
+
     }
 
     /**
@@ -38,7 +41,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         formulario = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtServicio = new javax.swing.JTextField();
@@ -149,10 +152,10 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
 
         formulario.setBackground(new java.awt.Color(218, 227, 229));
 
-        jTextField1.setText("35500000");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtMonto.setText("35500000");
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtMontoActionPerformed(evt);
             }
         });
 
@@ -170,9 +173,19 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
 
         jButton6.setBackground(new java.awt.Color(153, 237, 146));
         jButton6.setText("Pagar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 51, 51));
         jButton7.setText("Cancelar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout formularioLayout = new javax.swing.GroupLayout(formulario);
         formulario.setLayout(formularioLayout);
@@ -191,7 +204,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(27, 27, 27)
                         .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                            .addComponent(txtMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                             .addComponent(txtServicio))))
                 .addContainerGap(307, Short.MAX_VALUE))
         );
@@ -204,7 +217,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
                     .addComponent(txtServicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(30, 30, 30)
                 .addGroup(formularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -236,13 +249,43 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
         txtServicio.setText("UNA");
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtMontoActionPerformed
 
     private void txtServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtServicioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtServicioActionPerformed
+
+    static public int pin;
+
+    static public String[] servicios = {"ANDE","ESSAP","COPACO","CNC","UNA"};
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            int i = 0;
+            for (; i < servicios.length; i++) {
+                if(servicios[i].equals(txtServicio.getText())){
+                    break;
+                }
+            }
+            FuncionesPagoServicios.setServicio(i+1);
+            FuncionesPagoServicios.setMonto(Double.parseDouble(this.txtMonto.getText()));
+            FuncionesPagoServicios.verificarSaldo();
+            pin = FuncionesPagoServicios.generarPIN();
+            if (FuncionesSaldoCuenta.compararPIN(pin)) {
+                FuncionesPagoServicios bd = new FuncionesPagoServicios();
+                bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto);
+            }
+            JOptionPane.showMessageDialog(null, "El servicio "+servicios[i]+" se pago con exito con un monto de "+this.txtMonto.getText());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        this.txtMonto.setText("");
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -259,7 +302,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txtServicio;
     // End of variables declaration//GEN-END:variables
 }
