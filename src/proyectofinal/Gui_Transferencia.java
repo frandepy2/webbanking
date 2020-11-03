@@ -5,7 +5,10 @@
  */
 package proyectofinal;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import password_hashing.PasswordStorage;
 import proyectofinal.funciones.FuncionesTransferencia;
 
 
@@ -172,6 +175,8 @@ public class Gui_Transferencia extends javax.swing.JPanel {
                 FuncionesTransferencia.realizarTransferencia(nroCuenta,montoTransferir);
             }catch(IllegalArgumentException e){
                 JOptionPane.showMessageDialog(null, e.getMessage());
+            } catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException ex) {
+                Logger.getLogger(Gui_Transferencia.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             txtNroCuentaTranferir.setText("");
