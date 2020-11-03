@@ -1,3 +1,6 @@
 /build/
 /nbproject/private/
 /DB/webbanking.db
+nbproject/private/private.properties
+DB/webbanking2.db
+*.properties
