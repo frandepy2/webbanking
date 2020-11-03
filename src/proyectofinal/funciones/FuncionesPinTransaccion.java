@@ -27,7 +27,19 @@ public class FuncionesPinTransaccion {
         } else {
             return false;
         }
-
+    }
+    
+    public static String compararPIN(int pinTran,String pinIntroducido) {
+        if (pinIntroducido != null) {
+            int pin = Integer.parseInt(pinIntroducido);
+            while (pin != pinTran) {
+                JOptionPane.showMessageDialog(null, "El pin ingresado no es correcto. Por favor intente de nuevo.", "Pin Incorrecto", JOptionPane.ERROR_MESSAGE);
+                pin = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el PIN de transacción","PIN de Transacción",WARNING_MESSAGE));
+            }
+            return pinIntroducido;
+        } else {
+            return "";
+        }
     }
 }
 /*@author jlgut*/

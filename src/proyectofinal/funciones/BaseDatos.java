@@ -358,7 +358,7 @@ public class BaseDatos {
             pstmt.setInt(1, transferencia.getCuentaOrigen().getIdCuenta());
             pstmt.setInt(2, transferencia.getCuentaDestino().getIdCuenta());
             pstmt.setString(3,FormatoFechaHora(tiempo));
-            pstmt.setInt(4,transferencia.getPinTransaccion());
+            pstmt.setString(4,transferencia.getPinTransaccion());
             pstmt.executeUpdate();
             
         }catch(SQLException e){

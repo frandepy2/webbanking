@@ -4,6 +4,7 @@ package proyectofinal.funciones;
 import java.sql.Date;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import proyectofinal.LayoutPrincipal;
 
 /**
@@ -43,9 +44,16 @@ public class FuncionesTransferencia {
             
             if (!saldoDisponible) throw new IllegalArgumentException("No posee saldo Disponible para realizar la operación");
             
-            //Aqui poner el tema de PIN de Transaccion recordar Agregar 
+            //PIN de Transaccion
+            int pin = FuncionesPinTransaccion.generarPIN();
             
-            //Fin Logica de PIN de Transaccion, recordar Agregar
+            String PinIngresado = JOptionPane.showInputDialog(null, "Ingrese el PIN de transacción","PIN de Transacción",WARNING_MESSAGE);
+            
+            String PinHasheado = FuncionesPinTransaccion.compararPIN(pin, PinIngresado);
+            
+            if ("".equals(PinHasheado)) {
+                throw new IllegalArgumentException("PIN de Transaccion Invalido");
+            }
             
             //Aumenta en la cuenta Destino y disminuye en la cuenta de Origen
             cuentaDest.addMonto(montoTransferir);
@@ -54,7 +62,7 @@ public class FuncionesTransferencia {
             //Se registra los daltos de Transferencia
             transferencia.setCuentaDestino(cuentaDest);
             transferencia.setCuentaOrigen(LayoutPrincipal.cuenta );
-            transferencia.setPinTransaccion(0000);
+            transferencia.setPinTransaccion(PinHasheado);
             
             
             //Se registran los datos de Transaccion de la cuenta Emisora

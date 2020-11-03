@@ -3,7 +3,7 @@ package proyectofinal.funciones;
 
 public class Transferencia {
     private int idTransferencia;
-    private int pinTransaccion;
+    private String pinTransaccion;
     private Cuenta cuentaOrigen;
     private Cuenta cuentaDestino;
 
@@ -11,7 +11,7 @@ public class Transferencia {
         
     }
     
-    public Transferencia(int idTransferencia, int pinTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
+    public Transferencia(int idTransferencia, String pinTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
         this.idTransferencia = idTransferencia;
         this.pinTransaccion = pinTransaccion;
         this.cuentaOrigen = cuentaOrigen;
@@ -26,11 +26,11 @@ public class Transferencia {
         this.idTransferencia = idTransferencia;
     }
 
-    public int getPinTransaccion() {
+    public String getPinTransaccion() {
         return pinTransaccion;
     }
 
-    public void setPinTransaccion(int pinTransaccion) {
+    public void setPinTransaccion(String pinTransaccion) {
         this.pinTransaccion = pinTransaccion;
     }
 
