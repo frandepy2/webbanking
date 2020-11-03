@@ -5,6 +5,9 @@
  */
 package proyectofinal;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
@@ -157,7 +160,6 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
 
         formulario.setBackground(new java.awt.Color(218, 227, 229));
 
-        txtMonto.setText("35500000");
         txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMontoActionPerformed(evt);
@@ -256,6 +258,10 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
     static public String[] servicios = {"ANDE", "ESSAP", "COPACO", "CNC", "UNA"};
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        int hh = LocalTime.now().getHour();
+        int mm = LocalTime.now().getMinute();
+        int ss = LocalTime.now().getSecond();
+        
         try {
             if (txtServicio.getText().equals("")) {
                 throw new Exception("Por favor escoja un servicio a pagar");
@@ -272,8 +278,16 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
             pin = FuncionesPinTransaccion.generarPIN();
             if (FuncionesPinTransaccion.compararPIN(pin)) {
                 BaseDatos bd = new BaseDatos();
-                bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto);
-                JOptionPane.showMessageDialog(null, "Se realizo un pago al servicio " + servicios[i] + ", por monto de " + this.txtMonto.getText(), "Pago de servicio", WARNING_MESSAGE);
+                bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto *(-1));
+                
+                //Ticket
+                JOptionPane.showMessageDialog(null, "Pago de Servicio Realizado \n"
+                        + "Se Pago " + this.txtMonto.getText() + " Gs. \n"
+                        + "Servicio : " + servicios[i] + " \n"
+                        + "Fecha :" + Date.valueOf(LocalDate.now()) + "\n"
+                        + "Hora : " + hh+":"+mm+":"+ss +"\n" 
+                        + "Gracias por utilizar el Sistema", "Ticket", INFORMATION_MESSAGE);
+
             } else {
                 int cancelar = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere cancelar?", "Cancelar", YES_NO_OPTION, ERROR_MESSAGE);
                 if (cancelar == 0) {
@@ -283,7 +297,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
             }
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", ERROR_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, "Datos introducidos Invalidos","Error",ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

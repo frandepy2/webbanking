@@ -112,7 +112,6 @@ public class Gui_Depositos extends javax.swing.JPanel {
 
         formulario.setBackground(new java.awt.Color(218, 227, 229));
 
-        txtMontoDeposito.setText("35500000");
         txtMontoDeposito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMontoDepositoActionPerformed(evt);

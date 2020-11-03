@@ -3,7 +3,9 @@ package proyectofinal.funciones;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import static javax.swing.JOptionPane.WARNING_MESSAGE;
 import proyectofinal.LayoutPrincipal;
 
@@ -18,9 +20,16 @@ public class FuncionesTransferencia {
      * @param montoTransferir 
      */
     public static void realizarTransferencia(String nroCuentaDestino, String montoTransferir) throws IllegalArgumentException{
+        int hh = LocalTime.now().getHour();
+        int mm = LocalTime.now().getMinute();
+        int ss = LocalTime.now().getSecond();
         BaseDatos bd = new BaseDatos();
-        Double montoT = Double.parseDouble(montoTransferir);
-        
+        Double montoT;
+        try{
+            montoT = Double.parseDouble(montoTransferir);
+        }catch(NumberFormatException e){
+            throw new IllegalArgumentException("Dato Introducido Invalido");
+        }
         if (LayoutPrincipal.cuenta.getNroCuenta().equals(nroCuentaDestino)){
             throw new IllegalArgumentException("No puedes introducir tu numero de Cuenta como cuenta Destino");
         }
@@ -82,8 +91,13 @@ public class FuncionesTransferencia {
             
             //Se guardan los datos en la Base de Datos 
             bd.guardarDatosTransferencia(transaccion, transferencia,transaccionDest);
-            
-            JOptionPane.showMessageDialog(null, "Se realizo la transferencia correctamente");
+            //Ticket
+            JOptionPane.showMessageDialog(null, "Transferencia Realizada \n"
+                    + "Se Transfirió "+montoTransferir+" Gs. \n"
+                    + "Cuenta Destino : "+nroCuentaDestino+" \n"
+                    + "Fecha :"+transaccion.getFechaTransaccion()+"\n"
+                    + "Hora : " + hh+":"+mm+":"+ss +"\n" 
+                    + "Gracias por utilizar el Sistema","Ticket",INFORMATION_MESSAGE);
             
             
         }

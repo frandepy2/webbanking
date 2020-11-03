@@ -83,14 +83,12 @@ public class Gui_Transferencia extends javax.swing.JPanel {
 
         jLabel1.setText("Cantidad a Transferir en Gs");
 
-        txtMontoTransferir.setText("35500000");
         txtMontoTransferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMontoTransferirActionPerformed(evt);
             }
         });
 
-        txtNroCuentaTranferir.setText("000000002");
         txtNroCuentaTranferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNroCuentaTranferirActionPerformed(evt);
