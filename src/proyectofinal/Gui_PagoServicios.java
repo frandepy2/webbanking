@@ -6,6 +6,10 @@
 package proyectofinal;
 
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import static javax.swing.JOptionPane.WARNING_MESSAGE;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 import proyectofinal.funciones.BaseDatos;
 import proyectofinal.funciones.FuncionesPagoServicios;
 import proyectofinal.funciones.FuncionesPinTransaccion;
@@ -249,27 +253,37 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
 
     static public int pin;
 
-    static public String[] servicios = {"ANDE","ESSAP","COPACO","CNC","UNA"};
+    static public String[] servicios = {"ANDE", "ESSAP", "COPACO", "CNC", "UNA"};
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try {
+            if (txtServicio.getText().equals("")) {
+                throw new Exception("Por favor escoja un servicio a pagar");
+            }
             int i = 0;
             for (; i < servicios.length; i++) {
-                if(servicios[i].equals(txtServicio.getText())){
+                if (servicios[i].equals(txtServicio.getText())) {
                     break;
                 }
             }
-            FuncionesPagoServicios.setServicio(i+1);
+            FuncionesPagoServicios.setServicio(i + 1);
             FuncionesPagoServicios.setMonto(Double.parseDouble(this.txtMonto.getText()));
             FuncionesPagoServicios.verificarSaldo();
             pin = FuncionesPinTransaccion.generarPIN();
             if (FuncionesPinTransaccion.compararPIN(pin)) {
                 BaseDatos bd = new BaseDatos();
                 bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto);
+                JOptionPane.showMessageDialog(null, "Se realizo un pago al servicio " + servicios[i] + ", por monto de " + this.txtMonto.getText(), "Pago de servicio", WARNING_MESSAGE);
+            } else {
+                int cancelar = JOptionPane.showConfirmDialog(null, "Esta seguro que quiere cancelar?", "Cancelar", YES_NO_OPTION, ERROR_MESSAGE);
+                if (cancelar == 0) {
+                    this.txtServicio.setText("");
+                    this.txtMonto.setText("");
+                }
             }
-            JOptionPane.showMessageDialog(null, "El servicio "+servicios[i]+" se pago con exito con un monto de "+this.txtMonto.getText());
+
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "ERROR", ERROR_MESSAGE, null);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
