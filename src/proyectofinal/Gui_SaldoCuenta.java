@@ -78,7 +78,6 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
             }
         });
 
-        jTextField2.setText("3401922");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -146,7 +145,10 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTextField1.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
+        int pin = FuncionesSaldoCuenta.generarPIN();
+        if(FuncionesSaldoCuenta.compararPIN(pin)){
+            jTextField1.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
