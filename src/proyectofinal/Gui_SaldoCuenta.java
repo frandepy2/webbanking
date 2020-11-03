@@ -5,6 +5,7 @@
  */
 package proyectofinal;
 
+import proyectofinal.funciones.FuncionesPinTransaccion;
 import proyectofinal.funciones.FuncionesSaldoCuenta;
 
 
@@ -121,8 +122,8 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSaldoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int pin = FuncionesSaldoCuenta.generarPIN();
-        if(FuncionesSaldoCuenta.compararPIN(pin)){
+        int pin = FuncionesPinTransaccion.generarPIN();
+        if(FuncionesPinTransaccion.compararPIN(pin)){
             txtSaldo.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
