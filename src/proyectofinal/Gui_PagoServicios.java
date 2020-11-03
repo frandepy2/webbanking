@@ -8,6 +8,7 @@ package proyectofinal;
 import javax.swing.JOptionPane;
 import proyectofinal.funciones.BaseDatos;
 import proyectofinal.funciones.FuncionesPagoServicios;
+import proyectofinal.funciones.FuncionesPinTransaccion;
 import proyectofinal.funciones.FuncionesSaldoCuenta;
 
 /**
@@ -261,8 +262,8 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
             FuncionesPagoServicios.setServicio(i+1);
             FuncionesPagoServicios.setMonto(Double.parseDouble(this.txtMonto.getText()));
             FuncionesPagoServicios.verificarSaldo();
-            pin = FuncionesPagoServicios.generarPIN();
-            if (FuncionesSaldoCuenta.compararPIN(pin)) {
+            pin = FuncionesPinTransaccion.generarPIN();
+            if (FuncionesPinTransaccion.compararPIN(pin)) {
                 BaseDatos bd = new BaseDatos();
                 bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto);
             }
