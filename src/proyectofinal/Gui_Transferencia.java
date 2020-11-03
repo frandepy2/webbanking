@@ -5,6 +5,9 @@
  */
 package proyectofinal;
 
+import javax.swing.JOptionPane;
+import proyectofinal.funciones.FuncionesTransferencia;
+
 
 /**
  *
@@ -34,10 +37,10 @@ public class Gui_Transferencia extends javax.swing.JPanel {
         formulario = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnTransferir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtMontoTransferir = new javax.swing.JTextField();
+        txtNroCuentaTranferir = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(218, 227, 229));
@@ -74,23 +77,27 @@ public class Gui_Transferencia extends javax.swing.JPanel {
         jButton7.setBackground(new java.awt.Color(255, 51, 51));
         jButton7.setText("Cancelar");
 
-        jButton6.setBackground(new java.awt.Color(153, 237, 146));
-        jButton6.setText("Transferir");
-
-        jLabel1.setText("Cantidad a Transferir en Gs");
-
-        jTextField1.setText("35500000");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        btnTransferir.setBackground(new java.awt.Color(153, 237, 146));
+        btnTransferir.setText("Transferir");
+        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                btnTransferirActionPerformed(evt);
             }
         });
 
-        jTextField2.setEditable(false);
-        jTextField2.setText("000000002");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Cantidad a Transferir en Gs");
+
+        txtMontoTransferir.setText("35500000");
+        txtMontoTransferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtMontoTransferirActionPerformed(evt);
+            }
+        });
+
+        txtNroCuentaTranferir.setText("000000002");
+        txtNroCuentaTranferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNroCuentaTranferirActionPerformed(evt);
             }
         });
 
@@ -104,7 +111,7 @@ public class Gui_Transferencia extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -114,8 +121,8 @@ public class Gui_Transferencia extends javax.swing.JPanel {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNroCuentaTranferir, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMontoTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,15 +130,15 @@ public class Gui_Transferencia extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNroCuentaTranferir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMontoTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTransferir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -156,25 +163,45 @@ public class Gui_Transferencia extends javax.swing.JPanel {
         add(formulario, java.awt.BorderLayout.LINE_START);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtMontoTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoTransferirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtMontoTransferirActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtNroCuentaTranferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNroCuentaTranferirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtNroCuentaTranferirActionPerformed
+
+    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
+        String nroCuenta = txtNroCuentaTranferir.getText();
+        String montoTransferir = txtMontoTransferir.getText();
+        
+        if ("".equals(nroCuenta)) 
+        {
+            JOptionPane.showMessageDialog(null, "Introduce el NroCuenta a Transferir");
+        }else{
+            try{
+                FuncionesTransferencia.realizarTransferencia(nroCuenta,montoTransferir);
+            }catch(IllegalArgumentException e){
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+            
+            txtNroCuentaTranferir.setText("");
+            txtMontoTransferir.setText("");
+        }
+        
+    }//GEN-LAST:event_btnTransferirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Titulo;
+    private javax.swing.JButton btnTransferir;
     private javax.swing.JPanel formulario;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtMontoTransferir;
+    private javax.swing.JTextField txtNroCuentaTranferir;
     // End of variables declaration//GEN-END:variables
 }

@@ -91,4 +91,12 @@ public class Cuenta {
         }
     }
     
+    public void disminuirSaldo(String monto) throws IllegalArgumentException{
+        Double aQuitar = Double.parseDouble(monto);
+        if (aQuitar>0){
+            this.saldoEnCuenta = this.saldoEnCuenta - aQuitar;
+        }else{
+            throw new IllegalArgumentException("Error, dato invalido");
+        }
+    }
 }

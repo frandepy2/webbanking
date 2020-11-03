@@ -226,6 +226,7 @@ public class BaseDatos {
         }
     }
 
+    //Actualizar Saldo de la Cuenta
     private void actualizarSaldoCuenta(Cuenta cuentaDestino) {
         String sql="UPDATE cuenta SET cuenta_saldo = ? WHERE cuenta_id = ?";
         try (Connection conn = this.connect();
@@ -282,4 +283,113 @@ public class BaseDatos {
         }
         return modeloTabla;
     }
+    
+    /*FUNCIONES PARA TRANSFERENCIAS ENTRE CUENTAS */
+    
+    public Cuenta getCuentaDestino(String nroCuentaDestino){
+        String sql = "SELECT cuenta_id, cuenta_saldo, cuenta_est FROM cuenta WHERE cuenta_nro = ?";
+        Cuenta cuentaDest = new Cuenta();
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, nroCuentaDestino);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs == null) {
+                return null;
+            } else {
+                cuentaDest.setNroCuenta(nroCuentaDestino);
+                cuentaDest.setIdCuenta(rs.getInt("cuenta_id"));
+                cuentaDest.setSaldoEnCuenta(rs.getDouble("cuenta_saldo"));
+                cuentaDest.setEstadoCuenta(rs.getInt("cuenta_est"));
+
+                if (cuentaDest.getEstadoCuenta() == 1) {
+                    return null;
+                } else {
+                    return cuentaDest;
+                }
+            }
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return null;   
+    }
+    
+    public void guardarDatosTransferencia(Transaccion transaccionOrig,Transferencia transferencia,Transaccion transaccionDest){
+        final java.util.Date date=new java.util.Date();
+        
+        addTransferencia(transferencia,date);
+        
+        int transferencia_id=obtenerIDT(date,transferencia.getCuentaOrigen().getIdCuenta(),transferencia.getCuentaDestino().getIdCuenta());
+        
+        addTransaccionT(transaccionOrig,transferencia.getCuentaOrigen().getIdCuenta(),transferencia_id,date );
+        addTransaccionT(transaccionDest,transferencia.getCuentaDestino().getIdCuenta(),transferencia_id,date);
+        
+        actualizarSaldoCuenta(transferencia.getCuentaOrigen());
+        actualizarSaldoCuenta(transferencia.getCuentaDestino());
+    }
+    
+        //Trae la id de una transferencia
+    private int obtenerIDT(Date date,int cuentaorig_id, int cuentadest_id){
+        String sql = "SELECT transferencia_id FROM transferencia WHERE cuenta_id_origen = ? AND cuenta_id_dest = ? AND transferencia_fech = ?";
+        
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, cuentaorig_id);
+            pstmt.setInt(2, cuentadest_id);
+            pstmt.setString(3,FormatoFechaHora(date));
+            
+            ResultSet rs = pstmt.executeQuery();
+            return rs.getInt("transferencia_id");
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return 0;
+    }
+    
+    
+    private void addTransferencia(Transferencia transferencia, Date tiempo){
+        
+        String sql = "INSERT INTO transferencia (cuenta_id_origen,cuenta_id_dest,transferencia_fech,pin_transaccion) VALUES ( ?, ?, ?, ?)";
+        
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, transferencia.getCuentaOrigen().getIdCuenta());
+            pstmt.setInt(2, transferencia.getCuentaOrigen().getIdCuenta());
+            pstmt.setString(3,FormatoFechaHora(tiempo));
+            pstmt.setInt(4,transferencia.getPinTransaccion());
+            pstmt.executeUpdate();
+            
+        }catch(SQLException e){
+            e.getMessage();
+        }
+    }
+    
+    //Agrega Transacciones de Tipo Transferencia
+    private void addTransaccionT(Transaccion transaccion,int cuenta_id,int transferencia_id,Date tiempo){
+        String sql = "INSERT INTO transaccion (" +
+"                            cuenta_id," +
+"                            transaccion_monto," +
+"                            transaccion_fech," +
+"                            transaccion_desc," +
+"                            transaccion_tipo," +
+"                            transferencia_id" +
+"                        )" +
+"                        VALUES (?,?,?,?,?,?)";
+        
+        try(Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1,cuenta_id);
+            pstmt.setDouble(2,transaccion.getMonto());
+            pstmt.setString(3,FormatoFechaHora(tiempo));
+            pstmt.setString(4,transaccion.getDescripcion());
+            pstmt.setString(5,transaccion.getTipo());
+            pstmt.setInt(6,transferencia_id);
+
+            pstmt.executeUpdate();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
 }
