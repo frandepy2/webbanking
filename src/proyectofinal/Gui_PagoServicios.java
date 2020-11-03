@@ -6,6 +6,7 @@
 package proyectofinal;
 
 import javax.swing.JOptionPane;
+import proyectofinal.funciones.BaseDatos;
 import proyectofinal.funciones.FuncionesPagoServicios;
 import proyectofinal.funciones.FuncionesSaldoCuenta;
 
@@ -274,7 +275,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
             FuncionesPagoServicios.verificarSaldo();
             pin = FuncionesPagoServicios.generarPIN();
             if (FuncionesSaldoCuenta.compararPIN(pin)) {
-                FuncionesPagoServicios bd = new FuncionesPagoServicios();
+                BaseDatos bd = new BaseDatos();
                 bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto);
             }
             JOptionPane.showMessageDialog(null, "El servicio "+servicios[i]+" se pago con exito con un monto de "+this.txtMonto.getText());

@@ -4,18 +4,20 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+//import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
+//import java.time.LocalDate;
+//import java.time.LocalTime;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.sqlite.date.DateFormatUtils;
+import proyectofinal.Gui_PagoServicios;
+import proyectofinal.LayoutPrincipal;
 
 public class BaseDatos {
    
@@ -392,4 +394,56 @@ public class BaseDatos {
         }
     }
     
+    public Integer getServicio() {
+        int servicio = FuncionesPagoServicios.idServicio;
+        String sql = "SELECT servicio_id FROM servicio WHERE servicio_id = ?";
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, servicio);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return servicio;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
+    public void pagarServicio(int ID_Servicio, Double Monto) {
+        final java.util.Date date = new java.util.Date();
+        Transaccion transaccion = new Transaccion(0, Monto, date, "Pago de servicio " + Gui_PagoServicios.servicios[ID_Servicio - 1], "Pago de servicios");
+        String sql = "INSERT INTO transaccion ( cuenta_id, transaccion_monto, transaccion_fech, transaccion_desc, transaccion_tipo, servicio_id ) VALUES (?,?,?,?,?,?)";
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, LayoutPrincipal.cuenta.getIdCuenta());
+            pstmt.setDouble(2, transaccion.getMonto());
+            pstmt.setString(3, FormatoFechaHora(date));
+            pstmt.setString(4, transaccion.getDescripcion());
+            pstmt.setString(5, transaccion.getTipo());
+            pstmt.setInt(6, ID_Servicio);
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        disminuirSaldo(Monto);
+    }
+
+    public void disminuirSaldo(Double Monto) {
+        String sql = "UPDATE cuenta SET cuenta_saldo = ? WHERE cuenta_id = ?;";
+        Double nuevoSaldo = LayoutPrincipal.cuenta.getSaldoEnCuenta() - Monto;
+        try (Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setDouble(1, nuevoSaldo);
+            pstmt.setInt(2, LayoutPrincipal.cuenta.getIdCuenta());
+            LayoutPrincipal.cuenta.setSaldoEnCuenta(nuevoSaldo);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
