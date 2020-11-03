@@ -5,6 +5,8 @@
  */
 package proyectofinal;
 
+import proyectofinal.funciones.FuncionesSaldoCuenta;
+
 
 /**
  *
@@ -70,7 +72,6 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(103, 247, 156));
-        jTextField1.setText("+1550000 Gs");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -145,7 +146,7 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        jTextField1.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
