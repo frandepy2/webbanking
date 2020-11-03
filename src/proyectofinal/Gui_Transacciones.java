@@ -5,19 +5,36 @@
  */
 package proyectofinal;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import proyectofinal.funciones.FuncionesTransacciones;
 /**
  *
  * @author FRAND
  */
 public class Gui_Transacciones extends javax.swing.JPanel {
-
+    
+    
     /**
      * Creates new form Gui_Transacciones
      */
-    public Gui_Transacciones() {
-        initComponents();
+    public static DefaultTableModel modelo;
+    public Gui_Transacciones(){
+        initComponents(); 
     }
 
+    public void cargarTabla(){
+        try {
+            modelo = FuncionesTransacciones.poblarTabla();
+            tabla.setModel(modelo);
+        } catch (SQLException ex) {
+            Logger.getLogger(Gui_Transacciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,10 +46,9 @@ public class Gui_Transacciones extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
 
         setMaximumSize(new java.awt.Dimension(1024, 768));
         setMinimumSize(new java.awt.Dimension(500, 500));
@@ -44,17 +60,13 @@ public class Gui_Transacciones extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("HP Simplified", 0, 36)); // NOI18N
         jLabel1.setText("Transacciones de la Cuenta");
 
-        jLabel2.setText("Desde: 17/09/2020    Hasta 17/10/2020");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                .addComponent(jLabel1)
                 .addContainerGap(525, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -62,44 +74,16 @@ public class Gui_Transacciones extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jLabel2))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.setBackground(new java.awt.Color(218, 227, 229));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1", "Depósito", "15/10/2019", "10:00", "Depósito en Efectivo", "+ 20000 Gs"},
-                {"2", "Transferencia", "15/10/2020", "10:15", "Transferencia, Cuenta destino 2  10000 Gs ", "- 10000 Gs"},
-                {"3", "Pago de Servicio", "15/10/2020", "10:20", "Pago de Servicio ANDE", "- 3550000 Gs"}
-            },
-            new String [] {
-                "Nro Transaccion", "Tipo de Transaccion", "Fecha", "Hora", "Descripcion ", "Monto de Transaccion"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-        jTable1.setSelectionBackground(new java.awt.Color(51, 154, 244));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(550);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
+        tabla.setGridColor(new java.awt.Color(0, 0, 0));
+        tabla.setSelectionBackground(new java.awt.Color(51, 154, 244));
+        jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -124,10 +108,9 @@ public class Gui_Transacciones extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

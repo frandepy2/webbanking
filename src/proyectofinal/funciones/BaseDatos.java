@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.sqlite.date.DateFormatUtils;
 
 public class BaseDatos {
@@ -112,7 +113,7 @@ public class BaseDatos {
            ResultSet rs = pstmt.executeQuery();
            
            if(rs == null){
-               JOptionPane.showMessageDialog(null,"Que idiota cargo mal la base de datos?");
+               JOptionPane.showMessageDialog(null,"Error, no se encontro el dato en la base de Datos");
                return null;
            }else{
                cliente.setNombre(rs.getString("cliente_nombre"));
@@ -143,11 +144,15 @@ public class BaseDatos {
     }
     //Conversor de Fecha y hora exacta ahora mismo
     public String FormatoFechaHora (Date fecha){
-        return DateFormatUtils.format(fecha, "yyyy-MM-dd hh:mm:ss");
+        return DateFormatUtils.format(fecha, "yyyy-MM-dd HH:mm:ss");
     }
     
-    
-    //Actualizar Datos de Deposito
+    /**
+     * FUNCIONES ACTUALIZA DATO DE DEPOSITO
+     * @param deposito
+     * @param transaccion
+     * @param cuentaDestino 
+     */
     public void actualizarDatosDeposito(Deposito deposito, Transaccion transaccion, Cuenta cuentaDestino) {
         final java.util.Date date=new java.util.Date();
         addDeposito(deposito,cuentaDestino.getIdCuenta(),date);
@@ -233,5 +238,48 @@ public class BaseDatos {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    
+    
+    
+    /**
+     * FUNCIONES DE TRANSACCIONES traerTransacciones
+     * @param cuenta_id
+     * @return 
+     */
+    public DefaultTableModel traerTransacciones(int cuenta_id){
+        String sql = "SELECT transaccion_id,transaccion_tipo,transaccion_fech,transaccion_desc,transaccion_monto from transaccion WHERE cuenta_id=?";
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        
+        modeloTabla.addColumn("Nro Transaccion");
+        modeloTabla.addColumn("TipoTransaccion");
+        modeloTabla.addColumn("Fecha");
+        modeloTabla.addColumn("Descripcion");
+        modeloTabla.addColumn("monto");
+        
+        try(Connection conn = this.connect();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, cuenta_id);
+            
+            ResultSet rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                Object[] fila = new Object[5];
+                fila[0] = rs.getInt("transaccion_id");
+                fila[1] = rs.getString("transaccion_tipo");
+                fila[2] = rs.getString("transaccion_fech");
+                fila[3] = rs.getString("transaccion_desc");
+                fila[4] = rs.getDouble("transaccion_monto");
+                
+                modeloTabla.addRow(fila);
+
+            }
+            
+            return modeloTabla;
+        }catch(SQLException e){
+            e.getMessage();
+        }
+        return modeloTabla;
     }
 }
