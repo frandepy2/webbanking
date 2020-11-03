@@ -263,7 +263,9 @@ public class LayoutPrincipal extends javax.swing.JFrame{
     private void btnSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoActionPerformed
         quitarPaneles();
         gui_saldo.setVisible(true);
+        gui_saldo.limpiarSaldo();
         contenedor.add(gui_saldo);
+        
     }//GEN-LAST:event_btnSaldoActionPerformed
 
     private void btnTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciasActionPerformed

@@ -35,9 +35,7 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         saldo = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        txtSaldo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -69,22 +67,14 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
 
         saldo.setBackground(new java.awt.Color(218, 227, 229));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(103, 247, 156));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSaldo.setEditable(false);
+        txtSaldo.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        txtSaldo.setForeground(new java.awt.Color(103, 247, 156));
+        txtSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtSaldoActionPerformed(evt);
             }
         });
-
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Introduce PIN de Transacción: ");
 
         jLabel3.setText("Saldo en Cuenta:");
 
@@ -105,62 +95,49 @@ public class Gui_SaldoCuenta extends javax.swing.JPanel {
                 .addGap(174, 174, 174)
                 .addGroup(saldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(saldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
+                    .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(210, Short.MAX_VALUE))
         );
         saldoLayout.setVerticalGroup(
             saldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(saldoLayout.createSequentialGroup()
-                .addGroup(saldoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(saldoLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel4))
-                    .addGroup(saldoLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel4)
+                .addGap(14, 14, 14)
                 .addComponent(jButton1)
                 .addGap(19, 19, 19)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(164, Short.MAX_VALUE))
         );
 
         add(saldo, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaldoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtSaldoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int pin = FuncionesSaldoCuenta.generarPIN();
         if(FuncionesSaldoCuenta.compararPIN(pin)){
-            jTextField1.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
+            txtSaldo.setText(FuncionesSaldoCuenta.mostrarSaldo() + " Gs.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void limpiarSaldo(){
+        txtSaldo.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Titulo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel saldo;
+    private javax.swing.JTextField txtSaldo;
     // End of variables declaration//GEN-END:variables
 }
