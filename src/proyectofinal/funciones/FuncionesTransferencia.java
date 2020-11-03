@@ -19,6 +19,11 @@ public class FuncionesTransferencia {
     public static void realizarTransferencia(String nroCuentaDestino, String montoTransferir) throws IllegalArgumentException{
         BaseDatos bd = new BaseDatos();
         Double montoT = Double.parseDouble(montoTransferir);
+        
+        if (LayoutPrincipal.cuenta.getNroCuenta().equals(nroCuentaDestino)){
+            throw new IllegalArgumentException("No puedes introducir tu numero de Cuenta como cuenta Destino");
+        }
+        
         if (montoT<0){
             throw new IllegalArgumentException("Monto Introducido Invalido");
         }

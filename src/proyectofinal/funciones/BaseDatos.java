@@ -322,7 +322,6 @@ public class BaseDatos {
         addTransferencia(transferencia,date);
         
         int transferencia_id=obtenerIDT(date,transferencia.getCuentaOrigen().getIdCuenta(),transferencia.getCuentaDestino().getIdCuenta());
-        
         addTransaccionT(transaccionOrig,transferencia.getCuentaOrigen().getIdCuenta(),transferencia_id,date );
         addTransaccionT(transaccionDest,transferencia.getCuentaDestino().getIdCuenta(),transferencia_id,date);
         
@@ -357,7 +356,7 @@ public class BaseDatos {
         try(Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setInt(1, transferencia.getCuentaOrigen().getIdCuenta());
-            pstmt.setInt(2, transferencia.getCuentaOrigen().getIdCuenta());
+            pstmt.setInt(2, transferencia.getCuentaDestino().getIdCuenta());
             pstmt.setString(3,FormatoFechaHora(tiempo));
             pstmt.setInt(4,transferencia.getPinTransaccion());
             pstmt.executeUpdate();
