@@ -417,7 +417,7 @@ public class BaseDatos {
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, LayoutPrincipal.cuenta.getIdCuenta());
-            pstmt.setDouble(2, transaccion.getMonto());
+            pstmt.setDouble(2, transaccion.getMonto()*(-1));
             pstmt.setString(3, FormatoFechaHora(date));
             pstmt.setString(4, transaccion.getDescripcion());
             pstmt.setString(5, transaccion.getTipo());

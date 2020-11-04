@@ -278,7 +278,7 @@ public class Gui_PagoServicios extends javax.swing.JPanel {
             pin = FuncionesPinTransaccion.generarPIN();
             if (FuncionesPinTransaccion.compararPIN(pin)) {
                 BaseDatos bd = new BaseDatos();
-                bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto *(-1));
+                bd.pagarServicio(FuncionesPagoServicios.idServicio, FuncionesPagoServicios.monto);
                 
                 //Ticket
                 JOptionPane.showMessageDialog(null, "Pago de Servicio Realizado \n"
